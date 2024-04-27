@@ -7,10 +7,10 @@ def html(lista_url,texto_template):
     img_template = Template('<img src="$url">')
     imagen = img_template.substitute(url = 'Hola')
 
-    name_template = Template('<h3>$name<h3>')
+    name_template = Template('<h3>$name</h3>')
     name = name_template.substitute(name = 'name_prov')
 
-    nombre_template = Template('<h1>$nombre<h1>')
+    nombre_template = Template('<h1>$nombre</h1>')
     nombre = nombre_template.substitute(nombre = 'nombre_prov')
 
     # genero template base
@@ -25,9 +25,7 @@ def html(lista_url,texto_template):
                                 <body>
                                     <h1>Aves de Chile</h1>
                                     <div class="card-container">
-                                        <div class="card">
-                                            $body
-                                        </div>
+                                        $body
                                     </div>
                                 </body>
                                 </html>
@@ -36,7 +34,7 @@ def html(lista_url,texto_template):
 
     # recorro mi lista y la pongo en el body
     for url, name, nombre in lista_url:
-        texto_template += nombre_template.substitute(nombre = nombre) + '\n' + name_template.substitute(name = name) + '\n' + img_template.substitute(url = url) + '\n'
+        texto_template += '<div class="card">' + nombre_template.substitute(nombre = nombre) + '\n' + name_template.substitute(name = name) + '\n' + img_template.substitute(url = url) + '\n' + '</div>'
 
 
     # sustituyo mi data en el body del template 
